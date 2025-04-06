@@ -4,43 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¿Quieres ver esta carta?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #fefaf0;
-      font-family: 'Courier New', monospace;
+      background-color: #fef6fb;
+      font-family: 'Quicksand', sans-serif;
       text-align: center;
       padding-top: 100px;
+      overflow: hidden;
+      color: #50394c;
     }
 
     #pregunta {
-      font-size: 24px;
+      font-size: 26px;
       margin-bottom: 20px;
+      background: linear-gradient(to right, #e0bbf9, #c1e1c1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
     }
 
     .boton {
-      padding: 10px 20px;
+      padding: 12px 25px;
       font-size: 18px;
       margin: 10px;
       cursor: pointer;
-      background-color: #ffcccc;
       border: none;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
+      border-radius: 12px;
+      transition: transform 0.3s ease, left 0.2s ease, top 0.2s ease;
+      position: relative;
+      font-weight: 600;
+    }
+
+    .boton-si {
+      background-color: #c1e1c1;
+      color: #2f4f4f;
+    }
+
+    .boton-no {
+      background-color: #ffe0ac;
+      color: #4d3c2d;
     }
 
     #carta {
       display: none;
-      background-color: #fff0f5;
+      background-color: #e0bbf9;
       padding: 30px;
       margin: 50px auto;
-      width: 60%;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 65%;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       animation: aparecer 1s ease forwards;
     }
 
+    #carta h2 {
+      margin-bottom: 15px;
+    }
+
     @keyframes aparecer {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
@@ -49,18 +71,19 @@
 
   <div id="contenido">
     <div id="pregunta">¿Quieres ver esta carta?</div>
-    <button class="boton" onclick="mostrarCarta()">Sí</button>
-    <button class="boton">No</button>
+    <button class="boton boton-si" onclick="mostrarCarta()" id="siBtn">Sí</button>
+    <button class="boton boton-no" id="noBtn">No</button>
   </div>
 
   <div id="carta">
-    <h2>Querida persona que está leyendo esto...</h2>
+    <h2>💌 Querida tú que aún estás leyendo 💌</h2>
     <p>
-      Esta es solo una prueba, pero ya empieza a sentirse como algo especial.  
-      Cada línea, cada espacio… está hecho con intención.  
-      Y si esto es solo el comienzo, imagina lo que viene.
+      Esta carta no es más que un espacio seguro,  
+      creado con intención, colores suaves y algo de ternura.  
+      Si llegaste aquí, es porque te atreviste a decir que sí,  
+      y eso siempre será el primer paso hacia algo hermoso.
     </p>
-    <p style="font-style: italic;">– Tu yo que está aprendiendo a crear magia con código</p>
+    <p style="font-style: italic;">– Una versión tuya que cree en ti, aunque tú no lo hagas aún</p>
   </div>
 
   <script>
@@ -68,6 +91,24 @@
       document.getElementById("contenido").style.display = "none";
       document.getElementById("carta").style.display = "block";
     }
+
+    const botonNo = document.getElementById("noBtn");
+    const botonSi = document.getElementById("siBtn");
+
+    let vecesNo = 0;
+
+    botonNo.addEventListener("mouseover", () => {
+      vecesNo++;
+
+      const randomX = Math.floor(Math.random() * (window.innerWidth - 100));
+      const randomY = Math.floor(Math.random() * (window.innerHeight - 100));
+      botonNo.style.position = "absolute";
+      botonNo.style.left = `${randomX}px`;
+      botonNo.style.top = `${randomY}px`;
+
+      const escala = 1 + vecesNo * 0.1;
+      botonSi.style.transform = `scale(${escala})`;
+    });
   </script>
 </body>
 </html>
