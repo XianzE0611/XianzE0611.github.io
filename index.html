@@ -2,9 +2,68 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi página web</title>
+  <title>¿Quieres ver esta carta?</title>
+  <style>
+    body {
+      background-color: #fff7f0;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      margin: 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #ffb6c1;
+      color: #000;
+    }
+
+    #noBtn {
+      background-color: #d3d3d3;
+      color: #000;
+    }
+  </style>
 </head>
 <body>
-  <h1>¡Hola mundo, página activa!</h1>
+
+  <h1>¿Quieres ver esta carta?</h1>
+
+  <button class="btn" id="yesBtn" onclick="mostrarCarta()">Sí</button>
+  <button class="btn" id="noBtn" onclick="agrandarSi()">No</button>
+
+  <div id="carta" style="display:none; margin-top: 50px;">
+    <h2>Esta es la carta...</h2>
+    <p>Pero no la has escrito aún, ¿cierto? Jeje.</p>
+  </div>
+
+  <script>
+    let size = 16;
+
+    function agrandarSi() {
+      size += 10;
+      const boton = document.getElementById("yesBtn");
+      boton.style.fontSize = size + "px";
+    }
+
+    function mostrarCarta() {
+      document.getElementById("carta").style.display = "block";
+      document.getElementById("yesBtn").style.display = "none";
+      document.getElementById("noBtn").style.display = "none";
+    }
+  </script>
+
 </body>
 </html>
