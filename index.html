@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <title>Feliz cumpleaños, Alejita</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <style>
     * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: "Poppins", system-ui, sans-serif;
     }
 
     body {
@@ -19,7 +20,65 @@
         align-items: center;
         justify-content: center;
         padding: 20px;
+        overflow-x: hidden;
     }
+
+    /* ---------------- PANTALLA DE REGALO ---------------- */
+
+    #gift-screen {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at top, #ffdde1 0, #ee9ca7 40%, #3f2b96 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        z-index: 9999;
+        transition: opacity 0.6s ease;
+    }
+
+    .gift-title {
+        font-size: 2.6rem;
+        color: white;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .gift-img {
+        width: 220px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .gift-img:hover {
+        transform: scale(1.08);
+    }
+
+    .gift-text {
+        color: white;
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+
+    /* ---------------- CONFETI ---------------- */
+
+    .confeti-fall {
+        position: fixed;
+        top: -10px;
+        width: 10px;
+        height: 14px;
+        border-radius: 3px;
+        animation: caer 3s linear forwards;
+        z-index: 5000;
+    }
+
+    @keyframes caer {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+        }
+    }
+
+    /* ---------------- TARJETA PRINCIPAL ---------------- */
 
     .card {
         background: rgba(255, 255, 255, 0.9);
@@ -95,32 +154,6 @@
         font-style: italic;
     }
 
-    .buttons {
-        margin-top: 18px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .btn-primary {
-        border: none;
-        padding: 10px 20px;
-        border-radius: 999px;
-        background: linear-gradient(120deg, #ff4b8b, #ffb347);
-        color: white;
-        font-weight: 600;
-        font-size: 0.95rem;
-        cursor: pointer;
-        box-shadow: 0 10px 25px rgba(255, 75, 139, 0.4);
-        transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 14px 30px rgba(255, 75, 139, 0.5);
-        filter: brightness(1.05);
-    }
-
     .btn-ghost {
         border-radius: 999px;
         border: 1px solid rgba(123, 97, 255, 0.4);
@@ -139,10 +172,6 @@
     .btn-ghost:hover {
         background: rgba(255, 255, 255, 0.95);
         transform: translateY(-1px);
-    }
-
-    .btn-ghost span.heart {
-        color: #ff4b8b;
     }
 
     .right {
@@ -189,144 +218,96 @@
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
     }
 
-    .sticker span.emoji {
-        font-size: 1rem;
-    }
-
-    .floating {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-    }
-
-    .bubble {
-        position: absolute;
-        border-radius: 999px;
-        background: radial-gradient(circle at 30% 20%, #fff 0, rgba(255, 255, 255, 0) 60%);
-        opacity: 0.7;
-        filter: blur(0.2px);
-    }
-
-    .bubble.b1 {
-        width: 80px;
-        height: 80px;
-        top: 12%;
-        right: 10%;
-        background-color: rgba(255, 255, 255, 0.25);
-    }
-
-    .bubble.b2 {
-        width: 55px;
-        height: 55px;
-        bottom: 18%;
-        right: 22%;
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .bubble.b3 {
-        width: 40px;
-        height: 40px;
-        top: 22%;
-        left: 12%;
-        background-color: rgba(255, 255, 255, 0.18);
-    }
-
-    .confetti {
-        position: absolute;
-        width: 6px;
-        height: 14px;
-        border-radius: 999px;
-        opacity: 0.8;
-    }
-
-    .c1 { background: #ff4b8b; top: 8%; left: 18%; transform: rotate(-18deg); }
-    .c2 { background: #ffd166; top: 16%; right: 18%; transform: rotate(12deg); }
-    .c3 { background: #06d6a0; bottom: 16%; left: 20%; transform: rotate(-10deg); }
-    .c4 { background: #4cc9f0; bottom: 10%; right: 14%; transform: rotate(16deg); }
-
-    @media (max-width: 780px) {
-        .card {
-        grid-template-columns: 1fr;
-        }
-
-        .right {
-        order: -1;
-        padding-bottom: 18px;
-        }
-
-        .left {
-        padding: 22px 20px 26px;
-        }
-
-        h1 {
-        font-size: 2rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        h1 {
-        font-size: 1.8rem;
-        }
-
-        .subtitle, .message {
-        font-size: 0.9rem;
-        }
-    }
     </style>
 </head>
+
 <body>
-    <main class="card">
-    <section class="right">
-        <div class="photo-frame">
-        <!-- AQUÍ VA LA FOTO DE ALEJA -->
-        <img src="ale.jpeg" alt="Foto de Aleja" />
-        <div class="sticker">
-            <span class="emoji">🎂</span>
-            <span>La chica mas belle del munde</span>
-        </div>
-        </div>
 
-        <div class="floating">
-        <div class="bubble b1"></div>
-        <div class="bubble b2"></div>
-        <div class="bubble b3"></div>
-        <div class="confetti c1"></div>
-        <div class="confetti c2"></div>
-        <div class="confetti c3"></div>
-        <div class="confetti c4"></div>
-        </div>
-    </section>
+    <!-- PANTALLA DE REGALO -->
+    <div id="gift-screen">
+        <h1 class="gift-title">Abrir regalo uwu</h1>
+        <img src="pastel.png" class="gift-img" alt="Pastel">
+        <p class="gift-text">Toca para abrir</p>
+    </div>
 
-    <section class="left">
-        <div class="tag">
-        <span class="dot"></span>
-        <span>Te amo mucho preciosa</span>
-        </div>
+    <!-- CONTENIDO REAL (OCULTO AL INICIO) -->
+    <div id="real-content" style="display:none;">
 
-        <h1>
-        Feliz cumpleaños, <span>Alejita :33</span> 
-        </h1>
+        <main class="card">
+            <section class="right">
+                <div class="photo-frame">
+                    <img src="ale.jpeg" alt="Foto de Aleja" />
+                    <div class="sticker">
+                        <span class="emoji">🎂</span>
+                        <span>La chica más belle del munde</span>
+                    </div>
+                </div>
+            </section>
 
-        <p class="subtitle">
-        Hoy es el cumpleaños de una persona demasiado importante para mi, eres tan importante como Alejandro para Hefestión.
-        </p>
+            <section class="left">
+                <div class="tag">
+                    <span class="dot"></span>
+                    <span>Te amo mucho preciosa</span>
+                </div>
 
-        <p class="message">
-        Gracias por ser esa persona tan especial, tan preciosa y tan única.
-        Eres esa luz que ilumina mis dias cuando lo necesito, te quiero muchisimo alejita y gracias por siempre estar para mi, perdon si el regalo es un poco simple pero la distancia me limita de darte regalos o comer tamal en la esquina pero en verdad, siempre te voy a tener a una persona que me quiere a mi tanto como yo a ella, te amo demasiado alejita :333.
-        </p>
+                <h1>
+                    Feliz cumpleaños, <span>Alejita :33</span>
+                </h1>
 
-        <p class="signature">
-        Con cariño,<br />
-        Tu depeje🥺
-        </p>
+                <p class="subtitle">
+                    Hoy es el cumpleaños de una persona demasiado importante para mí, eres tan importante como Alejandro para Hefestión.
+                </p>
 
-        <button class="btn-ghost">
-            <span class="heart">♥</span>
-            Eres mi branrot pop
-        </button>
-        </div>
-    </section>
-    </main>
+                <p class="message">
+                    Gracias por ser esa persona tan especial, tan preciosa y tan única.
+                    Eres esa luz que ilumina mis días cuando lo necesito, te quiero muchísimo alejita y gracias por siempre estar para mí.
+                    Te amo demasiado alejita :333.
+                </p>
+
+                <p class="signature">
+                    Con cariño,<br>
+                    Tu depeje 🥺
+                </p>
+
+                <button class="btn-ghost">
+                    <span class="heart">♥</span>
+                    Eres mi branrot pop
+                </button>
+            </section>
+        </main>
+
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        const giftScreen = document.getElementById("gift-screen");
+        const realContent = document.getElementById("real-content");
+
+        document.querySelector(".gift-img").addEventListener("click", () => {
+            giftScreen.style.opacity = "0";
+
+            setTimeout(() => {
+                giftScreen.style.display = "none";
+                realContent.style.display = "block";
+                lanzarConfeti();
+            }, 600);
+        });
+
+        function lanzarConfeti() {
+            for (let i = 0; i < 80; i++) {
+                const confeti = document.createElement("div");
+                confeti.classList.add("confeti-fall");
+
+                confeti.style.left = Math.random() * 100 + "vw";
+                confeti.style.animationDelay = Math.random() * 2 + "s";
+                confeti.style.backgroundColor = ["#ff4b8b", "#ffd166", "#06d6a0", "#4cc9f0"][Math.floor(Math.random()*4)];
+
+                document.body.appendChild(confeti);
+
+                setTimeout(() => confeti.remove(), 4000);
+            }
+        }
+    </script>
+
 </body>
 </html>
