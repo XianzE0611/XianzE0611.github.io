@@ -1,115 +1,332 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>¿Quieres ver esta carta?</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-  <style>
+    <meta charset="UTF-8" />
+    <title>Feliz cumpleaños, Alejita</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
     body {
-      background-color: #fef6fb;
-      font-family: 'Quicksand', sans-serif;
-      text-align: center;
-      padding-top: 100px;
-      overflow: hidden;
-      color: #50394c;
+        min-height: 100vh;
+        background: radial-gradient(circle at top, #ffdde1 0, #ee9ca7 40%, #3f2b96 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
     }
 
-    #pregunta {
-      font-size: 26px;
-      margin-bottom: 20px;
-      background: linear-gradient(to right, #e0bbf9, #c1e1c1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 600;
+    .card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 24px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+        max-width: 900px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        overflow: hidden;
+        backdrop-filter: blur(10px);
     }
 
-    .boton {
-      padding: 12px 25px;
-      font-size: 18px;
-      margin: 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 12px;
-      transition: transform 0.3s ease, left 0.2s ease, top 0.2s ease;
-      position: relative;
-      font-weight: 600;
+    .left {
+        padding: 32px 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
     }
 
-    .boton-si {
-      background-color: #c1e1c1;
-      color: #2f4f4f;
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(255, 182, 193, 0.25);
+        color: #b03060;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-weight: 600;
     }
 
-    .boton-no {
-      background-color: #ffe0ac;
-      color: #4d3c2d;
+    .tag span.dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: #ff4b8b;
     }
 
-    #carta {
-      display: none;
-      background-color: #e0bbf9;
-      padding: 30px;
-      margin: 50px auto;
-      width: 65%;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      animation: aparecer 1s ease forwards;
+    h1 {
+        font-size: 2.4rem;
+        line-height: 1.1;
+        color: #2b133b;
     }
 
-    #carta h2 {
-      margin-bottom: 15px;
+    h1 span {
+        background: linear-gradient(120deg, #ff4b8b, #ffb347);
+        -webkit-background-clip: text;
+        color: transparent;
+        font-weight: 800;
     }
 
-    @keyframes aparecer {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .subtitle {
+        font-size: 0.98rem;
+        color: #5b4b6a;
+        line-height: 1.6;
     }
-  </style>
+
+    .message {
+        margin-top: 6px;
+        font-size: 0.98rem;
+        color: #3c294a;
+        line-height: 1.7;
+    }
+
+    .signature {
+        margin-top: 10px;
+        font-size: 0.95rem;
+        color: #7a5a9b;
+        font-style: italic;
+    }
+
+    .buttons {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .btn-primary {
+        border: none;
+        padding: 10px 20px;
+        border-radius: 999px;
+        background: linear-gradient(120deg, #ff4b8b, #ffb347);
+        color: white;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        box-shadow: 0 10px 25px rgba(255, 75, 139, 0.4);
+        transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 30px rgba(255, 75, 139, 0.5);
+        filter: brightness(1.05);
+    }
+
+    .btn-ghost {
+        border-radius: 999px;
+        border: 1px solid rgba(123, 97, 255, 0.4);
+        padding: 9px 18px;
+        background: rgba(255, 255, 255, 0.7);
+        color: #3f2b96;
+        font-weight: 500;
+        font-size: 0.9rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.95);
+        transform: translateY(-1px);
+    }
+
+    .btn-ghost span.heart {
+        color: #ff4b8b;
+    }
+
+    .right {
+        position: relative;
+        background: radial-gradient(circle at top left, #ffb6c1 0, #7b4397 45%, #1d2671 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+    }
+
+    .photo-frame {
+        position: relative;
+        width: 100%;
+        max-width: 320px;
+        aspect-ratio: 3 / 4;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+        transform: rotate(-3deg);
+    }
+
+    .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: saturate(1.1);
+    }
+
+    .sticker {
+        position: absolute;
+        bottom: 14px;
+        left: 14px;
+        background: rgba(255, 255, 255, 0.92);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #b03060;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .sticker span.emoji {
+        font-size: 1rem;
+    }
+
+    .floating {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .bubble {
+        position: absolute;
+        border-radius: 999px;
+        background: radial-gradient(circle at 30% 20%, #fff 0, rgba(255, 255, 255, 0) 60%);
+        opacity: 0.7;
+        filter: blur(0.2px);
+    }
+
+    .bubble.b1 {
+        width: 80px;
+        height: 80px;
+        top: 12%;
+        right: 10%;
+        background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .bubble.b2 {
+        width: 55px;
+        height: 55px;
+        bottom: 18%;
+        right: 22%;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .bubble.b3 {
+        width: 40px;
+        height: 40px;
+        top: 22%;
+        left: 12%;
+        background-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .confetti {
+        position: absolute;
+        width: 6px;
+        height: 14px;
+        border-radius: 999px;
+        opacity: 0.8;
+    }
+
+    .c1 { background: #ff4b8b; top: 8%; left: 18%; transform: rotate(-18deg); }
+    .c2 { background: #ffd166; top: 16%; right: 18%; transform: rotate(12deg); }
+    .c3 { background: #06d6a0; bottom: 16%; left: 20%; transform: rotate(-10deg); }
+    .c4 { background: #4cc9f0; bottom: 10%; right: 14%; transform: rotate(16deg); }
+
+    @media (max-width: 780px) {
+        .card {
+        grid-template-columns: 1fr;
+        }
+
+        .right {
+        order: -1;
+        padding-bottom: 18px;
+        }
+
+        .left {
+        padding: 22px 20px 26px;
+        }
+
+        h1 {
+        font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+        font-size: 1.8rem;
+        }
+
+        .subtitle, .message {
+        font-size: 0.9rem;
+        }
+    }
+    </style>
 </head>
 <body>
+    <main class="card">
+    <section class="right">
+        <div class="photo-frame">
+        <!-- AQUÍ VA LA FOTO DE ALEJA -->
+        <img src="ale.jpeg" alt="Foto de Aleja" />
+        <div class="sticker">
+            <span class="emoji">🎂</span>
+            <span>La chica mas belle del munde</span>
+        </div>
+        </div>
 
-  <div id="contenido">
-    <div id="pregunta">¿Quieres leer esta carta :333?</div>
-    <button class="boton boton-si" onclick="mostrarCarta()" id="siBtn">Sí</button>
-    <button class="boton boton-no" id="noBtn">No</button>
-  </div>
+        <div class="floating">
+        <div class="bubble b1"></div>
+        <div class="bubble b2"></div>
+        <div class="bubble b3"></div>
+        <div class="confetti c1"></div>
+        <div class="confetti c2"></div>
+        <div class="confetti c3"></div>
+        <div class="confetti c4"></div>
+        </div>
+    </section>
 
-  <div id="carta">
-    <h2>Esta carta es porq queria dartela 7w7</h2>
-    <p>
-      Holaaa como estas, espero que esta carta llegue a ti y si te 
-      llego es porque queria que vieras todo un codigo que se convirtio
-      en esta carta y si te dedique esta pagina es porque realmente 
-      pienso que eres una persona super especial para mi, gracias 
-      por hacerme faliz JAJAJAJJAAJ, Dios te bendiga uwu.
-    </p>
-    <p style="font-style: italic;">– La verdad esq nose que hago con mi life pero paso mi tiempo libre haciendo estas cosas, valdra la pena? 05/04/2025</p>
-  </div>
+    <section class="left">
+        <div class="tag">
+        <span class="dot"></span>
+        <span>Te amo mucho preciosa</span>
+        </div>
 
-  <script>
-    function mostrarCarta() {
-      document.getElementById("contenido").style.display = "none";
-      document.getElementById("carta").style.display = "block";
-    }
+        <h1>
+        Feliz cumpleaños, <span>Alejita :33</span> 
+        </h1>
 
-    const botonNo = document.getElementById("noBtn");
-    const botonSi = document.getElementById("siBtn");
+        <p class="subtitle">
+        Hoy es el cumpleaños de una persona demasiado importante para mi, eres tan importante como Alejandro para Hefestión.
+        </p>
 
-    let vecesNo = 0;
+        <p class="message">
+        Gracias por ser esa persona tan especial, tan preciosa y tan única.
+        Eres esa luz que ilumina mis dias cuando lo necesito, te quiero muchisimo alejita y gracias por siempre estar para mi, perdon si el regalo es un poco simple pero la distancia me limita de darte regalos o comer tamal en la esquina pero en verdad, siempre te voy a tener a una persona que me quiere a mi tanto como yo a ella, te amo demasiado alejita :333.
+        </p>
 
-    botonNo.addEventListener("mouseover", () => {
-      vecesNo++;
+        <p class="signature">
+        Con cariño,<br />
+        Tu depeje🥺
+        </p>
 
-      const randomX = Math.floor(Math.random() * (window.innerWidth - 100));
-      const randomY = Math.floor(Math.random() * (window.innerHeight - 100));
-      botonNo.style.position = "absolute";
-      botonNo.style.left = `${randomX}px`;
-      botonNo.style.top = `${randomY}px`;
-
-      const escala = 1 + vecesNo * 0.1;
-      botonSi.style.transform = `scale(${escala})`;
-    });
-  </script>
+        <button class="btn-ghost">
+            <span class="heart">♥</span>
+            Eres mi branrot pop
+        </button>
+        </div>
+    </section>
+    </main>
 </body>
 </html>
