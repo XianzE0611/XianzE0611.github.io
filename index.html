@@ -36,6 +36,8 @@
         gap: 20px;
         z-index: 9999;
         transition: opacity 0.6s ease;
+        padding: 20px;
+        text-align: center;
     }
 
     .gift-title {
@@ -218,6 +220,77 @@
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
     }
 
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 780px) {
+
+        body {
+            padding: 10px;
+        }
+
+        .card {
+            grid-template-columns: 1fr !important;
+            width: 95%;
+            margin-top: 40px;
+        }
+
+        .right {
+            order: -1;
+            padding: 20px;
+        }
+
+        .photo-frame {
+            max-width: 260px;
+            margin: 0 auto;
+            transform: rotate(0deg);
+        }
+
+        h1 {
+            font-size: 1.9rem !important;
+            text-align: center;
+        }
+
+        .subtitle, .message {
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .tag {
+            margin: 0 auto;
+        }
+
+        .signature {
+            text-align: center;
+        }
+
+        .btn-ghost {
+            margin: 0 auto;
+        }
+    }
+
+    @media (max-width: 480px) {
+
+        h1 {
+            font-size: 1.7rem !important;
+        }
+
+        .photo-frame {
+            max-width: 220px;
+        }
+
+        .gift-title {
+            font-size: 2rem;
+        }
+
+        .gift-img {
+            width: 160px;
+        }
+
+        .gift-text {
+            font-size: 1rem;
+        }
+    }
+
     </style>
 </head>
 
@@ -225,9 +298,9 @@
 
     <!-- PANTALLA DE REGALO -->
     <div id="gift-screen">
-        <h1 class="gift-title">Abrir regalo uwu</h1>
+        <h1 class="gift-title"> Abrir regalo uwu</h1>
         <img src="pastel.png" class="gift-img" alt="Pastel">
-        <p class="gift-text">Toca para abrir</p>
+        <p class="gift-text">Toca el pastel para abrir el despeje uwuw</p>
     </div>
 
     <!-- CONTENIDO REAL (OCULTO AL INICIO) -->
